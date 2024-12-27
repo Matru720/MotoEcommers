@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666899020769",
+    "project_id": "motomat-95be2",
+    "storage_bucket": "motomat-95be2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666899020769:android:6e660cb2520ebdcad930a0",
+        "android_client_info": {
+          "package_name": "com.example.motomat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACosUVpnAhe1ljvBvftzydsahSQHpFI2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
