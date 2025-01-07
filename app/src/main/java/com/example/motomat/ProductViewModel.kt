@@ -17,14 +17,16 @@ class ProductViewModel : ViewModel() {
         fetchProducts()
     }
 
-    private fun fetchProducts() {
+    // Remove private to make it accessible from HomeScreen
+    fun fetchProducts() {
         viewModelScope.launch {
             try {
                 FirebaseFirestore.getInstance()
                     .collection("products")
                     .addSnapshotListener { snapshot, error ->
                         if (error != null) {
-                            // Handle error
+                            _isLoading.value = false
+                            println("Error fetching products: ${error.message}")
                             return@addSnapshotListener
                         }
 
@@ -35,18 +37,24 @@ class ProductViewModel : ViewModel() {
                                         id = document.id,
                                         name = document.getString("name") ?: "",
                                         price = document.getDouble("price") ?: 0.0,
-                                        description = document.getString("description") ?: ""
+                                        description = document.getString("description") ?: "",
+                                        imageUrl = document.getString("imageUrl") ?: ""
                                     )
                                 } catch (e: Exception) {
+                                    println("Error parsing product: ${e.message}")
                                     null
                                 }
                             }
                             _products.value = productList
+                            _isLoading.value = false
+                        } else {
+                            _isLoading.value = false
+                            println("Snapshot is null")
                         }
-                        _isLoading.value = false
                     }
             } catch (e: Exception) {
                 _isLoading.value = false
+                println("Exception fetching products: ${e.message}")
             }
         }
     }

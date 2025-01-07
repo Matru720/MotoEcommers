@@ -1,6 +1,5 @@
 package com.example.motomat
 
-import androidx.compose.foundation.lazy.items
 import HomeScreen
 import LoginScreen
 import ProfileScreen
@@ -15,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.motomat.Screens.ProductDetailScreen
 import com.example.motomat.ui.theme.MotoMatTheme
 import com.google.firebase.Firebase
 import com.google.firebase.initialize
@@ -52,5 +52,9 @@ fun MotoMatApp() {
         composable("signup") { SignupScreen(navController) }
         composable("home") { HomeScreen(navController) }
         composable("profile") { ProfileScreen(navController) }
+        composable("productDetail/{productId}") { backStackEntry ->
+            val productId = backStackEntry.arguments?.getString("productId") ?: ""
+            ProductDetailScreen(navController, productId)
+        }
     }
 }

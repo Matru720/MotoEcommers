@@ -95,5 +95,16 @@ fun ProfileScreen(navController: NavController) {
         ) {
             Text("Logout")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                navController.navigate("home")
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Return to Home")
+        }
     }
 }
